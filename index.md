@@ -297,6 +297,20 @@ qplot(Sepal.Length, Petal.Length, data = iris)
 
 ---
 
+## Call a python file
+
+```
+d<- system('python pyfile.py', intern=TRUE)
+
+```
+```
+> d
+[1] "1"  "19" "3" 
+```
+
+---
+
+
 
 Sources:
 
