@@ -308,13 +308,41 @@ d<- system('python pyfile.py', intern=TRUE)
 [1] "1"  "19" "3" 
 ```
 
+
 ---
 
+<iframe src=http://glimmer.rstudio.com/systematicin/retirement.withdrawal/></iframe>
 
+--- #myslide
+
+<script>
+$('#myslide').on('slideenter', function(){
+  $(this).find('article')
+    .append('<iframe src="http://bl.ocks.org/mbostock/raw/1256572/"></iframe>')
+});
+$('#myslide').on('slideleave', function(){
+  $(this).find('iframe').remove();
+});
+</script>
+
+--- 
+
+<iframe src=http://glimmer.rstudio.com/ramnathv/strikeouts/></iframe>
+
+---
+
+<iframe src=http://glimmer.rstudio.com/ramnathv/rChartApp/></iframe>
+
+---
+
+<iframe src=http://glimmer.rstudio.com/alexbbrown/g3plot/#dataSet=mpg,tabSelected=G3Plot></iframe>
+
+---
 
 Sources:
 
 http://www.ats.ucla.edu/stat/r/seminars/intro.htm
+https://github.com/ramnathv
 
 
 
