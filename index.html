@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Overview of R</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Overview of R">
+  <meta name="author" content="Ian Munoz">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Overview of R</h1>
+    <h2>Some concepts &amp; cool Stuff</h2>
+    <p>Ian Munoz<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Summary</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Variables &amp; Data Structures</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Vectors</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Define some Vectors</p>
+
+<pre><code>a &lt;- c(1,2,5.3,6,-2,4) # numeric vector
+b &lt;- c(&quot;one&quot;,&quot;two&quot;,&quot;three&quot;) # character vector
+c &lt;- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE) #logical vector
+</code></pre>
+
+<pre><code>&gt; a
+[1]  1.0  2.0  5.3  6.0 -2.0  4.0
+&gt; b
+[1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot;
+&gt; c
+[1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE
+&gt; 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Vectors</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Refer to  elements in a Vector</p>
+
+<pre><code>&gt;a[c(2,4)] # 2nd and 4th elements of vector
+[1] 2 6
+&gt; b[1:2]
+[1] &quot;one&quot; &quot;two&quot;
+&gt; a[c]
+[1]  1.0  2.0  5.3 -2.0
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Matrices</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code># generates 5 x 4 numeric matrix 
+x&lt;-matrix(1:20, nrow=5,ncol=4)
+
+# another example
+cells &lt;- c(1,26,24,68)
+rnames &lt;- c(&quot;R1&quot;, &quot;R2&quot;)
+cnames &lt;- c(&quot;C1&quot;, &quot;C2&quot;) 
+mymatrix &lt;- matrix(cells, nrow=2, ncol=2, byrow=TRUE,
+dimnames=list(rnames, cnames))
+</code></pre>
+
+<pre><code>&gt; mymatrix
+   C1 C2
+R1  1 26
+R2 24 68
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Matrices</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Identify rows, columns or elements using subscripts.</p>
+
+<pre><code>&gt; x[,4] # 4th column of matrix
+[1] 16 17 18 19 20
+
+&gt; x[3,] # 3rd row of matrix 
+[1]  3  8 13 18
+
+&gt; x[2:4,1:3] # rows 2,3,4 of columns 1,2,3
+     [,1] [,2] [,3]
+[1,]    2    7   12
+[2,]    3    8   13
+[3,]    4    9   14
+
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Data Frames</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>A data frame is more general than a matrix, in that different columns can have different modes (numeric, character, factor, etc.). This is similar to SAS and SPSS datasets.</p>
+
+<pre><code>d &lt;- c(1,2,3,4)
+e &lt;- c(&quot;red&quot;, &quot;white&quot;, &quot;red&quot;, NA)
+f &lt;- c(TRUE,TRUE,TRUE,FALSE)
+mydata &lt;- data.frame(d,e,f)
+names(mydata) &lt;- c(&quot;ID&quot;,&quot;Color&quot;,&quot;Passed&quot;) # variable names
+</code></pre>
+
+<pre><code>&gt; mydata
+  ID Color Passed
+1  1   red   TRUE
+2  2 white   TRUE
+3  3   red   TRUE
+4  4  &lt;NA&gt;  FALSE
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Data Frames- Accessing data</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>mydata[2:3] # columns 2,3 of data frame
+mydata[c(&quot;ID&quot;,&quot;Color&quot;)] # columns ID and Age from data frame
+mydata$ID # variable x1 in the data frame
+</code></pre>
+
+<pre><code>&gt; mydata[2:3] # columns 2,3 of data frame
+  Color Passed
+1   red   TRUE
+2 white   TRUE
+3   red   TRUE
+4  &lt;NA&gt;  FALSE
+&gt; mydata[c(&quot;ID&quot;,&quot;Color&quot;)] # columns ID and Age from data frame
+  ID Color
+1  1   red
+2  2 white
+3  3   red
+4  4  &lt;NA&gt;
+&gt; mydata$ID # variable x1 in the data frame
+[1] 1 2 3 4
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Lists</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>An ordered collection of objects (components). A list allows you to gather a variety of (possibly unrelated) objects under one name.</p>
+
+<pre><code># example of a list with 4 components - 
+# a string, a numeric vector, a matrix, and a scaler 
+w &lt;- list(name=&quot;Fred&quot;, mynumbers=d, mymatrix=x, age=5.3)
+# example of a list containing two lists 
+v &lt;- c(w,w)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>The List</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>&gt; w
+$name
+[1] &quot;Fred&quot;
+
+$mynumbers
+[1] 1 2 3 4
+
+$mymatrix
+     [,1] [,2] [,3] [,4]
+[1,]    1    6   11   16
+[2,]    2    7   12   17
+[3,]    3    8   13   18
+[4,]    4    9   14   19
+[5,]    5   10   15   20
+
+$age
+[1] 5.3
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Accessing the list</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>&gt; w[[2]] # 2nd component of the list
+[1] 1 2 3 4
+&gt; w[[&quot;mynumbers&quot;]] # component named mynumbers in list
+[1] 1 2 3 4
+&gt; w$name
+[1] &quot;Fred&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Factors</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Tell R that a variable is nominal by making it a factor. The factor stores the nominal values as a vector of integers in the range <a href="where%20k%20is%20the%20number%20of%20unique%20values%20in%20the%20nominal%20variable"> 1... k </a>, and an internal vector of character strings (the original values) mapped to these integers.</p>
+
+<pre><code># variable gender with 20 &quot;male&quot; entries and 
+# 30 &quot;female&quot; entries 
+gender &lt;- c(rep(&quot;male&quot;,20), rep(&quot;female&quot;, 30)) 
+gender &lt;- factor(gender) 
+# stores gender as 20 1s and 30 2s and associates
+# 1=female, 2=male internally (alphabetically)
+# R now treats gender as a nominal variable 
+summary(gender)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Some Useful Functions</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>length(mydata) # number of elements or components
+str(mydata)    # structure of an object 
+names(mydata)  # names
+
+c(mydata,mydata,...)       # combine objects into a vector
+cbind(a, a, ...) # combine objects as columns
+rbind(a, a, ...) # combine objects as rows 
+
+object     # prints the object
+
+ls()       # list current objects
+rm(object) # delete an object
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Read some flat files</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code># comma separated values
+dat.csv &lt;- read.csv(&quot;http://www.ats.ucla.edu/stat/data/hsb2.csv&quot;)
+# tab separated values
+dat.tab &lt;- read.table(&quot;http://www.ats.ucla.edu/stat/data/hsb2.txt&quot;,
+  header=TRUE, sep = &quot;\t&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Some   <em>foreign</em> data types</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>require(foreign)
+# SPSS files
+dat.spss &lt;- read.spss(&quot;http://www.ats.ucla.edu/stat/data/hsb2.sav&quot;,
+  to.data.frame=TRUE)
+# Stata files
+dat.dta &lt;- read.dta(&quot;http://www.ats.ucla.edu/stat/data/hsb2.dta&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Write some data</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>#write.csv(dat.csv, file = &quot;path/to/save/filename.csv&quot;)
+
+#write.table(dat.csv, file = &quot;path/to/save/filename.txt&quot;, sep = &quot;\t&quot;, na=&quot;.&quot;)
+
+#write.dta(dat.csv, file = &quot;path/to/save/filename.dta&quot;)
+
+#write.xlsx(dat.csv, file = &quot;path/to/save/filename.xlsx&quot;, sheetName=&quot;hsb2&quot;)
+
+# save to binary R format (can save multiple datasets and R objects)
+#save(dat.csv, dat.dta, dat.spss, dat.txt, file = &quot;path/to/save/filename.RData&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>library(ggplot2)
+head(iris) # by default, head displays the first 6 rows. see `?head`
+head(iris, n = 10) # we can also explicitly set the number of rows to display
+</code></pre>
+
+<pre><code>qplot(Sepal.Length, Petal.Length, data = iris)
+# Plot Sepal.Length vs. Petal.Length, using data from the `iris` data frame.
+# * First argument `Sepal.Length` goes on the x-axis.
+# * Second argument `Petal.Length` goes on the y-axis.
+# * `data = iris` means to look for this data in the `iris` data frame.   
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    <iframe src='figures\Rplot.png'></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <article data-timings="">
+    <p>Sources:</p>
+
+<p><a href="http://www.ats.ucla.edu/stat/r/seminars/intro.htm">http://www.ats.ucla.edu/stat/r/seminars/intro.htm</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Summary'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Vectors'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Vectors'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Matrices'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Matrices'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Data Frames'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Data Frames- Accessing data'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Lists'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='The List'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Accessing the list'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Factors'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Some Useful Functions'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Read some flat files'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Some   <em>foreign</em> data types'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Write some data'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='ggplot2'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='ggplot2'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title=''>
+         18
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
